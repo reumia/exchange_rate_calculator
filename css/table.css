@@ -1,0 +1,63 @@
+
+.cal-table {
+    width: 100%;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+.cal-table * {
+    font-weight: normal;
+}
+.cal-table th,
+.cal-table td {
+    padding: 8px 10px;
+    border-color: #eee;
+    border-style: solid;
+    border-width: 1px 0 0;
+    font-size: 14px;
+}
+.cal-table tr th:first-child {
+    border-right-width: 1px;
+}
+.cal-table thead th {
+    font-size: 12px;
+    color: #999;
+}
+.cal-table tbody th {
+    text-align: left;
+    color: #5194cd;
+}
+.cal-table tbody td {
+    text-align: center;
+}
+
+/*
+ *  상태표시
+ */
+.tr-positive td {
+    color: #FB2F2E;
+}
+.tr-negative td {
+    color: #008AD7;
+}
+.tr-negative .td-per:before {
+    content: "- ";
+}
+.td-comp:before,
+.td-comp:before {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 4px;
+    vertical-align: middle;
+    border-right: 4px solid transparent!important;
+    border-left: 4px solid transparent!important;
+}
+.tr-positive .td-comp:before {
+    border-color: #008AD7;
+    border-bottom: 4px solid;
+}
+.tr-negative .td-comp:before {
+    border-color: #FB2F2E;
+    border-top: 4px solid;
+}

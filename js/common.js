@@ -34,7 +34,7 @@ $(function(){
             }).appendTo($tr);
             $td_per = $("<td></td>", {
                 class: "td-per",
-                html: items[i]['등락율']
+                html: items[i]['등락율'] + "%"
             }).appendTo($tr);
             $tr.appendTo($tbody);
         }

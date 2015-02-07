@@ -1,3 +1,20 @@
+/*
+ *  클리어픽스
+ */
 .clearfix {
     overflow: auto;
+}
+
+/*
+ *  글자 색상
+ */
+.text-default {
+    color: #666666!important;
+}
+
+/*
+ * 화살표
+ */
+.caret {
+
 }

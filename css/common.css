@@ -1,0 +1,19 @@
+
+html {
+    color: #666;
+}
+h1 {
+    font-size: 1.2em;
+}
+
+.cal-header,
+.cal-body {
+    overflow: auto;
+}
+.cal-header {
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+.cal-body {
+    border-top: 1px solid #eee;
+}

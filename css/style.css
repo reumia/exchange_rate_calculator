@@ -1,18 +1,4 @@
 @import 'normalize.css';
+@import 'common.css';
 @import 'module.css';
-
-body {
-    font-family: Arial, "nanumgothic", sans-serif;
-}
-.cal-header,
-.cal-body {
-    overflow: auto;
-}
-.cal-header {
-    padding: 15px;
-    background-color: #eee;
-}
-.cal-body {
-
-}
-
+@import 'table.css';
