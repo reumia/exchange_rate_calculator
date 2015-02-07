@@ -1,9 +1,10 @@
 
 html {
+    line-height: 1.6;
     color: #666;
 }
 h1 {
-    font-size: 1.2em;
+    font-size: 17px;
 }
 
 .cal-header,
@@ -11,9 +12,33 @@ h1 {
     overflow: auto;
 }
 .cal-header {
-    padding: 15px;
+    padding: 10px;
     background-color: #f9f9f9;
 }
 .cal-body {
     border-top: 1px solid #eee;
+}
+.cal-footer {
+    position: relative;
+    padding: 10px;
+    font-size: 12px;
+    color: #bbb;
+}
+.cal-footer span {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+.cal-footer span img {
+    position: relative;
+    display: inline-block;
+    top: 1px;
+    height: 12px;
+    margin-top: 4px;
+}
+.equal {
+    text-align: center;
+    font-size: 24px;
+    line-height: .8;
+    color: #999;
 }

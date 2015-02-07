@@ -9,12 +9,66 @@
  *  글자 색상
  */
 .text-default {
-    color: #666666!important;
+    color: #666!important;
 }
 
 /*
- * 화살표
+ *  selector
  */
-.caret {
-
+.selector {
+    overflow: auto;
+    background-color: #FFF;
+    border: 2px solid #EEE;
+    border-radius: 4px;
+}
+.selector__left,
+.selector__right {
+    box-sizing: border-box;
+    float: left;
+    padding: 4px 6px;
+}
+.selector__left {
+    width: 40%;
+    border-right: 1px solid #eee;
+    background: linear-gradient(#fefefe, #f9f9f9);
+}
+.selector__right {
+    width: 60%;
+    text-align: right;
+}
+.selector__flag {
+    float: left;
+    margin-right: 4px;
+}
+.selector__contents {
+    overflow: auto;
+}
+.selector__unit,
+.selector__txt {
+    color: #999;
+}
+.selector__txt {
+    margin-top: 5px;
+    font-size: 12px;
+}
+.selector__input {
+    font-weight: bold;
+    font-size: 17px;
+    text-align: right;
+}
+.selector__select,
+.selector__input {
+    display: block;
+    box-sizing: border-box;
+    height: 18px;
+    width: 100%;
+    margin: 3px 0;
+    border: 0;
+    background-color: transparent;
+}
+.selector__select:focus,
+.selector__input:focus {
+    outline: 0;
+    border: 0;
+    background-color: #E2F8FF;
 }
