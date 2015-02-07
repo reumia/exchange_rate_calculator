@@ -6,9 +6,17 @@ $(function(){
             $tbody = $("<tbody></tbody>");
 
         for( var i in items ){
-            var $tr, $th, $span, $td_std, $td_comp, $td_per;
+            var $tr, $th, $span, $td_std, $td_comp, $td_per, $tr_class;
 
+            if( items[i]['isPositive'] == "Y" ){
+                $tr_class = "tr-positive"
+            } else {
+                $tr_class = "tr-negative"
+            }
 
+            $tr = $("<tr></tr>", {
+                class: $tr_class
+            });
             $th = $("<th></th>", {
                 html: items[i]['국가']
             }).appendTo($tr);
