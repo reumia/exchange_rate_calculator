@@ -29,6 +29,10 @@
 .cal-table tbody td {
     text-align: center;
 }
+.cal-table tbody td,
+.cal-table tbody th {
+    background-color: #fcfcfc;
+}
 
 /*
  *  상태표시
