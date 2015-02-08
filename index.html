@@ -18,7 +18,7 @@
 <body class="cal">
 <header class="cal-header">
     <h1>환율 정보</h1>
-    <section class="selector selector--top">
+    <section class="selector selector--top" data-default="USD">
         <div class="selector__left">
             <img class="selector__flag" src="img/flags/usd.png" alt=""/>
             <div class="selector__contents">
@@ -28,13 +28,13 @@
         </div>
         <div class="selector__right">
             <input type="text" class="selector__input" value="0"/>
-            <div class="selector__txt">0 달러</div>
+            <div class="selector__txt">0 <span class="selector__unit-kr">달러</span></div>
         </div>
     </section>
     <section class="equal">
         =
     </section>
-    <section class="selector selector--bottom">
+    <section class="selector selector--bottom" data-default="KRW">
         <div class="selector__left">
             <img class="selector__flag" src="img/flags/usd.png" alt=""/>
             <div class="selector__contents">
@@ -44,7 +44,7 @@
         </div>
         <div class="selector__right">
             <input type="text" class="selector__input" value="0"/>
-            <div class="selector__txt">0 달러</div>
+            <div class="selector__txt">0 <span class="selector__unit-kr">원</span></div>
         </div>
     </section>
 </header>

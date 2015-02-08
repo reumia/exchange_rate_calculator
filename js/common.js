@@ -1,46 +1,11 @@
 $(function(){
 
-    $.getJSON( "js/data.json", function( data ) {
-
-        var items = data['환율정보'],
-            $tbody = $("<tbody></tbody>");
-
-        for( var i in items ){
-            var $tr, $th, $span, $td_std, $td_comp, $td_per, $tr_class;
-
-            if( items[i]['isPositive'] == "Y" ){
-                $tr_class = "tr-positive"
-            } else {
-                $tr_class = "tr-negative"
-            }
-
-            $tr = $("<tr></tr>", {
-                class: $tr_class
-            });
-            $th = $("<th></th>", {
-                html: items[i]['국가']
-            }).appendTo($tr);
-            $span = $("<span></span>", {
-                class: "text-default",
-                html: " " + items[i]['통화명']
-            }).appendTo($th);
-            $td_std = $("<td></td>", {
-                class: "td-std",
-                html: items[i]['매매기준율']
-            }).appendTo($tr);
-            $td_comp = $("<td></td>", {
-                class: "td-comp",
-                html: items[i]['전일대비']
-            }).appendTo($tr);
-            $td_per = $("<td></td>", {
-                class: "td-per",
-                html: items[i]['등락율'] + "%"
-            }).appendTo($tr);
-            $tr.appendTo($tbody);
-        }
-
-        $tbody.appendTo('.cal-table');
-
-    });
-
+    // JSON 기준으로 테이블 생성
+    set_table();
+    // JSON 기준으로 select 의 option 생성
+    set_options();
+    // Select 의 값이 변경될 때마다 국기와 각종 단위를 변경해 주는 set_selector 함수 실행
+    $('.selector__select').on('change', function(){
+        set_selector(this);
+    })
 });

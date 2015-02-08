@@ -65,3 +65,7 @@
     border-color: #FB2F2E;
     border-top: 4px solid;
 }
+
+.tr-hidden {
+    display: none;
+}
