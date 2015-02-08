@@ -100,12 +100,15 @@ function set_selector(target) {
 
     $target.each(function(){
 
-        var value, $flag, $unit, $unit_kr, flag_url, unit_kr;
+        var value, $flag, $unit, $unit_kr, flag_url, unit_kr, $selector;
 
+        $selector = $(this).parents('.selector');
         $flag = $(this).parents('.selector').find('.selector__flag');
         $unit = $(this).siblings('.selector__unit');
-        $unit_kr = $(this).parents('.selector').find('.selector__unit-kr');
+        $unit_kr = $selector.find('.selector__unit-kr');
 
+        // 셀렉터가 값을 가지고 있지 않은 경우에 이미 선택되어있는 옵션의 값을 가져 온다.
+        //
         if( $(this).val() != "" ){
             value = $(this).val();
         }
@@ -113,6 +116,8 @@ function set_selector(target) {
             value = $(this).find('option:selected').val();
         }
 
+        // 각 위치에 값 대입
+        //
         $unit.text(value);
 
         flag_url = value.split(' ');
@@ -123,6 +128,24 @@ function set_selector(target) {
         unit_kr = $('tr[data-unit="'+value+'"]').data('unit-kr');
         $unit_kr.text(unit_kr);
 
+        // 계산을 위해 selector 에 데이터 값 추가
+        //
+        $selector.attr('data-value', value);
+
     });
+
+}
+
+function set_money_by_input(target) {
+
+    var value, $target, $money;
+
+    $target = $(target);
+
+    value = $target.val();
+    value = Number(value).toLocaleString();
+    $money = $target.siblings('.selector__txt').find('.selector__money');
+
+    $money.text(value);
 
 }
