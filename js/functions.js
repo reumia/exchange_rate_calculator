@@ -21,30 +21,30 @@ function set_table() {
             }
             // 테이블 생성
             $tr = $("<tr></tr>", {
-                class: $tr_class,
+                'class': $tr_class,
                 'data-nation': items[i]['국가'],
                 'data-unit': items[i]['통화명'],
                 'data-unit-kr': items[i]['통화명_국문'],
                 'data-std': items[i]['매매기준율']
             });
             $th = $("<th></th>", {
-                html: items[i]['국가']
+                'html': items[i]['국가']
             }).appendTo($tr);
             $span = $("<span></span>", {
-                class: "text-default",
-                html: " " + items[i]['통화명']
+                'class': "text-default",
+                'html': " " + items[i]['통화명']
             }).appendTo($th);
             $td_std = $("<td></td>", {
-                class: "td-std",
-                html: items[i]['매매기준율']
+                'class': "td-std",
+                'html': items[i]['매매기준율']
             }).appendTo($tr);
             $td_comp = $("<td></td>", {
-                class: "td-comp",
-                html: items[i]['전일대비']
+                'class': "td-comp",
+                'html': items[i]['전일대비']
             }).appendTo($tr);
             $td_per = $("<td></td>", {
-                class: "td-per",
-                html: items[i]['등락율'] + "%"
+                'class': "td-per",
+                'html': items[i]['등락율'] + "%"
             }).appendTo($tr);
             $tr.appendTo($tbody);
 
@@ -71,8 +71,8 @@ function set_options() {
             for ( var i in items ) {
 
                 $option = $('<option></option>', {
-                    html: items[i]['국가'],
-                    value: items[i]['통화명']
+                    'html': items[i]['국가'],
+                    'value': items[i]['통화명']
                 });
 
                 if ( items[i]['통화명'] == select_default ) {
