@@ -278,7 +278,7 @@ function bind_validate() {
 function bind_calculate() {
 
     $('.selector')
-        .on('keyup', '.selector__input', function(event){
+        .on('keyup', '.selector__input', function(){
             set_money_by_input($(this));
             calculate($(this));
         })

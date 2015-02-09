@@ -17,8 +17,8 @@
  */
 .selector {
     overflow: auto;
-    background-color: #FFF;
-    border: 2px solid #EEE;
+    background-color: #fff;
+    border: 2px solid #ddd;
     border-radius: 4px;
 }
 .selector__left,
@@ -70,5 +70,5 @@
 .selector__input:focus {
     outline: 0;
     border: 0;
-    background-color: #E2F8FF;
+    background-color: #e2f8ff;
 }
