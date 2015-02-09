@@ -100,7 +100,7 @@ function set_selector(target) {
 
     $target.each(function() {
 
-        var value, $flag, $unit, $unit_kr, flag_url, unit_kr, $selector;
+        var value, $flag, $unit, $unit_kr, flag_url, unit_kr, $selector, nation;
 
         $selector = $(this).parents('.selector');
         $flag = $(this).parents('.selector').find('.selector__flag');
@@ -125,6 +125,9 @@ function set_selector(target) {
 
         unit_kr = $('tr[data-unit="'+value+'"]').attr('data-unit-kr');
         $unit_kr.text(unit_kr);
+
+        nation = $('tr[data-unit="'+value+'"]').attr('data-nation');
+        $flag.attr('alt', nation);
 
         // 계산을 위해 selector 에 데이터 값 추가
         $selector.attr('data-value', value);
@@ -196,7 +199,8 @@ function calculate($target) {
  */
 function only_numeric(key) {
 
-    if ( key.which && (key.which  > 47 && key.which  < 58 || key.which > 95 && key.which < 106 || key.which == 8 || key.which == 110 || key.which == 190 ) ) {
+    // 숫자, 숫자패드, 소숫점, 백스페이스, 탭 만 사용 가능
+    if ( key.which && (key.which  > 47 && key.which  < 58 || key.which > 95 && key.which < 106 || key.which == 8 || key.which == 9 || key.which == 110 || key.which == 190 ) ) {
         // 숫자인 경우
     }
     else {
