@@ -8,10 +8,14 @@ $(function(){
     $('.selector__select').on('change', function(){
         set_selector(this);
     });
-
-    $('.selector__input').keyup(function(){
-        set_money_by_input(this);
-    });
-
+    // 계산 함수 바인드
+    $('.selector')
+        .on('keyup', '.selector__input', function(event){
+            set_money_by_input($(this));
+            calculate($(this));
+        }).on('change', '.selector__select', function(){
+            var $target = $(this).parents('.selector').find('.selector__input');
+            calculate($target);
+        });
 
 });

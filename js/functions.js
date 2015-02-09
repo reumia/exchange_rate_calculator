@@ -1,4 +1,4 @@
-function set_table(){
+function set_table() {
 
     $.getJSON( "js/data.json", function(data){
 
@@ -66,7 +66,7 @@ function set_options() {
 
         $select.each(function(){
 
-            select_default = $(this).parents('.selector').data('default');
+            select_default = $(this).parents('.selector').attr('data-default');
 
             for ( var i in items ) {
 
@@ -108,7 +108,6 @@ function set_selector(target) {
         $unit_kr = $selector.find('.selector__unit-kr');
 
         // 셀렉터가 값을 가지고 있지 않은 경우에 이미 선택되어있는 옵션의 값을 가져 온다.
-        //
         if( $(this).val() != "" ){
             value = $(this).val();
         }
@@ -117,7 +116,6 @@ function set_selector(target) {
         }
 
         // 각 위치에 값 대입
-        //
         $unit.text(value);
 
         flag_url = value.split(' ');
@@ -125,22 +123,22 @@ function set_selector(target) {
         flag_url = 'img/flags/' + flag_url + '.png';
         $flag.attr('src', flag_url);
 
-        unit_kr = $('tr[data-unit="'+value+'"]').data('unit-kr');
+        unit_kr = $('tr[data-unit="'+value+'"]').attr('data-unit-kr');
         $unit_kr.text(unit_kr);
 
         // 계산을 위해 selector 에 데이터 값 추가
-        //
         $selector.attr('data-value', value);
 
     });
 
 }
 
-function set_money_by_input(target) {
+/*
+    인풋에 입력된 값을 아래쪽에 화폐단위로 환산하여 입력
+ */
+function set_money_by_input($target) {
 
-    var value, $target, $money;
-
-    $target = $(target);
+    var value, $money;
 
     value = $target.val();
     value = Number(value).toLocaleString();
@@ -148,4 +146,47 @@ function set_money_by_input(target) {
 
     $money.text(value);
 
+}
+
+/*
+    입력된 숫자를 소숫점 두자리까지 반올림하여 되출력
+ */
+function set_number_default(number) {
+
+    return Math.round( number * 100 ) / 100;
+
+}
+/*
+    계산
+ */
+function calculate($target) {
+    var input_num, $selector, $target_selector, $target_input, cal_std, cal_target_std, i, result;
+
+    $selector = $target.parents('.selector');
+    if( $selector.hasClass('selector--top') ){
+        $target_selector = $('.selector--bottom');
+    }
+    else {
+        $target_selector = $('.selector--top');
+    }
+    $target_input = $target_selector.find('.selector__input');
+    cal_std = $selector.attr('data-value');
+    cal_std = $('tr[data-unit="'+ cal_std +'"]').attr('data-std');
+    cal_target_std = $target_selector.attr('data-value');
+    cal_target_std = $('tr[data-unit="'+ cal_target_std +'"]').attr('data-std');
+    input_num = $target.val();
+
+    // 입력된 값을 선택된 매매기준율로 곱해진 값 i(KRW) 를 만들어, 다른 국가의 화폐로 계산하기 위한 상수로 활용한다.
+    i = Number( input_num * cal_std );
+    i = set_number_default(i);
+
+    // 상수 i 를 기반으로 상대 셀렉터의 매매기준율로 계산
+    result = Number( i / cal_target_std );
+    result = set_number_default(result);
+
+    // 결과값을 상대 셀렉터의 인풋에 입력
+    $target_input.val(result);
+
+    // 인풋에 입력된 값이 money 에 입력되도록 함수 재실행
+    set_money_by_input($target_input);
 }
