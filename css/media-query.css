@@ -1,0 +1,11 @@
+.cal-wrapper {
+    max-width: 480px;
+    margin: 50px auto;
+    border: 1px solid #bbb;
+}
+@media screen and (max-width: 480px) {
+    .cal-wrapper {
+        margin: 0;
+        border: none;
+    }
+}

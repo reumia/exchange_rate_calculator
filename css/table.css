@@ -21,6 +21,7 @@
 .cal-table thead th {
     font-size: 12px;
     color: #999;
+    background-color: #fff;
 }
 .cal-table tbody th {
     text-align: left;
