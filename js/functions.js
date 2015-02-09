@@ -7,16 +7,16 @@ function set_table() {
         items = data['환율정보'];
         $tbody = $("<tbody></tbody>");
 
-        for( var i in items ){
+        for ( var i in items ) {
 
             // 상태에 따라 tr에 클래스 배분
-            if( items[i].isPositive == "Y" ){
+            if ( items[i].isPositive == "Y" ) {
                 $tr_class = "tr-positive"
             }
-            if( items[i].isPositive == "N" ){
+            if ( items[i].isPositive == "N" ) {
                 $tr_class = "tr-negative"
             }
-            if( items[i]['국가'] == '대한민국' ){
+            if ( items[i]['국가'] == '대한민국' ) {
                 $tr_class = "tr-hidden"
             }
             // 테이블 생성
@@ -75,7 +75,7 @@ function set_options() {
                     value: items[i]['통화명']
                 });
 
-                if( items[i]['통화명'] == select_default ){
+                if ( items[i]['통화명'] == select_default ) {
                     $option.attr('selected', true);
                 }
 
@@ -98,7 +98,7 @@ function set_selector(target) {
 
     $target = $(target);
 
-    $target.each(function(){
+    $target.each(function() {
 
         var value, $flag, $unit, $unit_kr, flag_url, unit_kr, $selector;
 
@@ -108,7 +108,7 @@ function set_selector(target) {
         $unit_kr = $selector.find('.selector__unit-kr');
 
         // 셀렉터가 값을 가지고 있지 않은 경우에 이미 선택되어있는 옵션의 값을 가져 온다.
-        if( $(this).val() != "" ){
+        if ( $(this).val() != "" ) {
             value = $(this).val();
         }
         else {
@@ -163,7 +163,7 @@ function calculate($target) {
     var input_num, $selector, $target_selector, $target_input, cal_std, cal_target_std, i, result;
 
     $selector = $target.parents('.selector');
-    if( $selector.hasClass('selector--top') ){
+    if ( $selector.hasClass('selector--top') ) {
         $target_selector = $('.selector--bottom');
     }
     else {
@@ -189,4 +189,83 @@ function calculate($target) {
 
     // 인풋에 입력된 값이 money 에 입력되도록 함수 재실행
     set_money_by_input($target_input);
+}
+
+/*
+    입력되기 이전의 값 리턴
+ */
+function set_value_before($target) {
+
+    var value;
+
+    value = $target.val();
+
+    return value;
+
+}
+
+/*
+    최초입력 값이 0이면 삭제
+ */
+function validate_zero($target) {
+
+    var value;
+
+    value = $target.val();
+
+    if ( value == "0" ) {
+        $target.val("");
+    }
+}
+
+/*
+
+ */
+function validate_numeric($target, value_before) {
+
+    var value;
+
+    value = $target.val();
+
+    if ( ! $.isNumeric(value) ) {
+
+        $target.val(value_before);
+
+    }
+
+}
+
+/*
+    검사 함수 바인드
+ */
+function bind_validate() {
+
+    var value_before;
+
+    $('.selector')
+        .on('keydown', '.selector__input', function(){
+            value_before = set_value_before($(this));
+        })
+        .on('keyup', '.selector__input', function(){
+            validate_zero($(this));
+            validate_numeric($(this), value_before);
+        });
+
+}
+
+/*
+    계산 함수 바인드
+ */
+function bind_calculate() {
+
+    $('.selector')
+        .on('keyup', '.selector__input', function(event){
+            set_money_by_input($(this));
+            calculate($(this));
+        })
+        .on('change', '.selector__select', function(){
+            var $target = $(this).parents('.selector').find('.selector__input');
+            calculate($target);
+        });
+
 }
