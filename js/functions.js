@@ -192,6 +192,20 @@ function calculate($target) {
 }
 
 /*
+    숫자가 아닌 경우 입력 불가
+ */
+function only_numeric(key) {
+
+    if ( key.which && (key.which  > 47 && key.which  < 58 || key.which > 95 && key.which < 106 || key.which == 8 || key.which == 110 || key.which == 190 ) ) {
+        // 숫자인 경우
+    }
+    else {
+        // 숫자가 아닌 경우
+        key.preventDefault();
+    }
+
+}
+/*
     입력되기 이전의 값 리턴
  */
 function set_value_before($target) {
@@ -219,7 +233,7 @@ function validate_zero($target) {
 }
 
 /*
-
+    숫자가 아니면 이전 값으로 복원
  */
 function validate_numeric($target, value_before) {
 
@@ -243,8 +257,9 @@ function bind_validate() {
     var value_before;
 
     $('.selector')
-        .on('keydown', '.selector__input', function(){
-            value_before = set_value_before($(this));
+        .on('keydown', '.selector__input', function(event){
+            only_numeric(event);
+            value_before = set_value_before($(this))
         })
         .on('keyup', '.selector__input', function(){
             validate_zero($(this));
